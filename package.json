@@ -1,0 +1,42 @@
+{
+  "name": "star-history-assets",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@11.5.1",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "check": "pnpm format:check && pnpm typecheck && pnpm test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "generate": "tsx src/generate.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "d3-axis": "2.1.0",
+    "d3-scale": "3.3.0",
+    "d3-selection": "2.0.0",
+    "d3-shape": "2.1.0",
+    "dayjs": "1.11.13",
+    "jsdom": "20.0.2",
+    "lodash": "4.17.21",
+    "sharp": "0.34.5",
+    "svgo": "3.3.2"
+  },
+  "devDependencies": {
+    "@types/d3-axis": "2.1.0",
+    "@types/d3-scale": "3.3.5",
+    "@types/d3-selection": "2.0.5",
+    "@types/d3-shape": "2.1.7",
+    "@types/jsdom": "20.0.1",
+    "@types/lodash": "4.17.20",
+    "@types/node": "24.10.1",
+    "prettier": "3.9.0",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  }
+}
