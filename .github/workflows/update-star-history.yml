@@ -16,10 +16,20 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ secrets.STAR_HISTORY_TOKEN }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
+
+      - name: Validate GitHub API token
+        shell: bash
+        run: |
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo "::error::Repository secret STAR_HISTORY_TOKEN is required to read Stargazers from another repository"
+            exit 1
+          fi
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
@@ -39,8 +49,6 @@ jobs:
         run: pnpm check
 
       - name: Generate WebP charts
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: pnpm generate
 
       - name: Commit generated assets

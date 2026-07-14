@@ -22,6 +22,24 @@ generated/MAA1999-M9A/light.webp
 generated/MAA1999-M9A/dark.webp
 ```
 
+## Configure the GitHub API token
+
+The workflow runs in a separate repository, so its automatic `GITHUB_TOKEN` cannot read the M9A Stargazers API. Anonymous access to that endpoint is also unavailable. Add a repository secret named `STAR_HISTORY_TOKEN` before running the workflow.
+
+Use a fine-grained personal access token with:
+
+- Resource owner: `MAA1999`
+- Repository access: only `M9A`
+- Repository permissions: `Metadata` read-only
+
+Then add it to this repository:
+
+```bash
+gh secret set STAR_HISTORY_TOKEN --repo MAA1999/star-history-assets
+```
+
+The token is used only for reading public Stargazer timestamps. Commits to this asset repository continue to use its short-lived automatic `GITHUB_TOKEN` through `contents: write`.
+
 ## Embed a chart
 
 Assuming this repository is published as `MAA1999/star-history-assets`:
